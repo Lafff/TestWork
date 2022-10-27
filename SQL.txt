@@ -1,0 +1,9 @@
+SELECT user_id FROM reports WHERE DATE_PART('year', DATE(created_at)) = 2021
+UNION 
+SELECT SUM(reward) WHERE DATE_PART('year', DATE(created_at)) = 2022
+
+-----------------------------------------------------------------------
+
+SELECT STRING_AGG(reports.barcode + ' ' + CAST(reports.price AS VARCHAR),',') 
+FROM reports INNER JOIN pos ON reports.pos_id = pos.id GROUP BY pos.title
+
